@@ -1,4 +1,4 @@
-$downloads = "$home\Downloads"
+$downloads = "$HOME\Downloads"
 $filesToWatch = "**"
 
 $WatherProperties = @{
@@ -16,6 +16,8 @@ $FileChangeHandler = {
 }
 
 $FileChangeNotifier = New-Object IO.FileSystemWatcher -Property $WatherProperties
-Register-ObjectEvent $FileChangeNotifier Created -SourceIdentifier FileCreated -Action $FileChangeHandler
+
+Register-ObjectEvent $FileChangeNotifier Created -SourceIdentifier FileCreated -Action $FileChangeHandler 
 Register-ObjectEvent $FileChangeNotifier Deleted -SourceIdentifier FileDeleted -Action $FileChangeHandler
 Register-ObjectEvent $FileChangeNotifier Changed -SourceIdentifier FileChanged -Action $FileChangeHandler
+get-job | Wait-Job
